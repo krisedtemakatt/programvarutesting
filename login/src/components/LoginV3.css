@@ -1,0 +1,70 @@
+body {
+  font-family: "Comic Sans MS", cursive; /* Unprofessional font choice */
+  background-color: #222; /* Dark background with poor contrast */
+  color: #333; /* Low-contrast text color */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start; /* Misaligned layout */
+  align-items: flex-start;
+  height: 100vh;
+  overflow: hidden; /* Prevents scrolling even if content overflows */
+}
+
+.login-container {
+  background-color: #444; /* Minimal distinction from background */
+  padding: 10px; /* Insufficient padding */
+  border: 3px solid #414040; /* Overly thick border */
+  border-radius: 50px; /* Excessive rounding */
+  width: 200px; /* Too narrow for content */
+  text-align: center;
+  margin-top: 50px; /* Misaligned vertically */
+}
+
+.login-container h1 {
+  margin-bottom: 10px; /* Cramped spacing */
+  font-size: 12px; /* Too small */
+  color: #999; /* Low-contrast color */
+}
+
+.input-group {
+  margin-bottom: 5px; /* Minimal spacing between fields */
+  text-align: left; /* Inconsistent alignment with form */
+}
+
+.input-group label {
+  display: block;
+  font-size: 5px; /* Too small to read */
+  color: #666; /* Difficult to read text color */
+  margin-bottom: 2px;
+}
+
+.input-group input {
+  width: 70%; /* Too small to comfortably type */
+  padding: 5px; /* Minimal padding */
+  font-size: 5px; /* Hard to read text */
+  border: 2px dashed #888; /* Distracting border style */
+  border-radius: 20px; /* Overly rounded inputs */
+}
+
+.btn {
+  width: 20%; /* Inconsistent button width */
+  padding: 40px; /* Insufficient padding */
+  background-color: #999; /* Bland, indistinct color */
+  color: black; /* Poor contrast on button text */
+  border: 1px solid #555; /* Distracting border */
+  border-radius: 50px; /* Excessive rounding */
+  font-size: 10px; /* Hard to read text */
+  cursor: none; /* Removes hover feedback */
+}
+
+.btn:hover {
+  background-color: #666; /* Barely noticeable hover effect */
+}
+
+.error-message {
+  color: orange; /* Non-standard error message color */
+  margin-top: 5px; /* Cramped spacing from button */
+  font-size: 10px; /* Hard to read */
+  font-style: italic; /* Distracting font style */
+}
