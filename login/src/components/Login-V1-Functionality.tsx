@@ -30,10 +30,16 @@ const LoginV1 = () => {
       }
   };
 
+  const preventEnterSubmit = (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+    }
+  };
+
     return (
         <div className="login-container">
             <h1>Login</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} >
                 <div className="input-group">
                     <label htmlFor="username">Username</label>
                     <input
@@ -42,6 +48,7 @@ const LoginV1 = () => {
                         placeholder="Enter your username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        onKeyDown={preventEnterSubmit}
                         required
                     />
                 </div>
@@ -53,6 +60,7 @@ const LoginV1 = () => {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={preventEnterSubmit}
                         required
                     />
                 </div>
