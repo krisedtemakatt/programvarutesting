@@ -20,7 +20,7 @@ const LoginV3 = () => {
       if (user) {
           navigate("/loggedIn", { state: {  } });
       } else {
-          setErrorMessage("Error 101: Incorrect credentials!"); // Cryptic error message
+          setErrorMessage("Something went wrong"); // Cryptic error message
       }
   };
 
@@ -29,29 +29,31 @@ const LoginV3 = () => {
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <div className="input-group">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        placeholder="Enter your username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="input-group">
                     <label htmlFor="password">Password</label>
                     <input
-                        type="password"
+                        type="text"
                         id="password"
-                        placeholder="Enter your password"
+                        placeholder="Enter input"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
+
+                <div className="input-group">
+                    <label htmlFor="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter input"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </div>
+                
                 <button type="submit" className="btn">
-                    Login
+                    Press
                 </button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
