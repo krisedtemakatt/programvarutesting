@@ -63,7 +63,7 @@ body {
 }
 
 .error-message {
-  color: orange; /* Non-standard error message color */
+  color: #444; /* Non-standard error message color */
   margin-top: 5px; /* Cramped spacing from button */
   font-size: 10px; /* Hard to read */
   font-style: italic; /* Distracting font style */
