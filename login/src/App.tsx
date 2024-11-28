@@ -7,13 +7,14 @@ import LoginV2 from "./components/Login-V2-Reliability";
 import LoginV3 from "./components/Login-V3-Usability";
 import LoginV4 from "./components/Login-V4-Efficency";
 import LoginV5 from "./components/Login-V5-Portability";
+import LoginV6 from "./components/Login-V6-nothingworks";
 
 const App = () => {
     return (
         <Router>
             <Routes>
                 {/* Login Page */}
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<LoginV6 />} />
                 {/* Welcome Page */}
                 <Route path="/loggedIn" element={<LoggedIn />} />
             </Routes>
