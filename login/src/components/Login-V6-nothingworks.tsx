@@ -7,6 +7,7 @@ const LoginV6 = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
 
     const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ const LoginV6 = () => {
                     const randomFail = Math.random() > 0.3; // 70% chance of failure
                     if (randomFail) {
                         setErrorMessage("An unexpected error occurred. Please try again.");
-                        return;
+                        setShowPopup(true);
                     }
                     setErrorMessage("");
                     navigate("/loggedIn", { state: { username } });
@@ -74,6 +75,14 @@ const LoginV6 = () => {
                 </button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+            {showPopup && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <p>Incorrect credentials. Please try again!</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
