@@ -1,37 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import users from "../users"; // Import user data
+import users from "../users";
 import "./Login.css";
 
-const LoginV5 = () => {
+const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isAllowedBrowser, setIsAllowedBrowser] = useState(false);
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const userAgent = navigator.userAgent.toLowerCase();
+        
+        console.log(userAgent);
+
+        // Detect Chrome only (not Edge or Safari)
+        if (userAgent.includes("chrome") && !userAgent.includes("edg")) {
+            setIsAllowedBrowser(true);
+        } else {
+            setIsAllowedBrowser(false);
+        }
+    }, []);
+
     const handleLogin = (e) => {
-      e.preventDefault();
-  
-      // Hardcoding paths and behaviors to specific environments
-      if (navigator.userAgent.includes("Windows")) {
-          // Works only on Windows browsers
-          const user = users.find(
-              (user) => user.username === username && user.password === password
-          );
-          if (user) {
-              navigate("/loggedIn", { state: { username } });
-          } else {
-              setErrorMessage("Invalid username or password!");
-          }
-      } else {
-          setErrorMessage("This app works only on Windows systems!");
-      }
-  };
+        e.preventDefault();
+
+        if (!isAllowedBrowser) {
+            setErrorMessage("This application works only on Google Chrome.");
+            return;
+        }
+
+        const user = users.find(
+            (user) =>
+                user.username === username &&
+                user.password.toLowerCase() === password.toLowerCase()
+        );
+
+        if (user) {
+            setErrorMessage("");
+            navigate("/welcome", { state: { username: user.username } });
+        } else {
+            setErrorMessage("Invalid username or password!");
+        }
+    };
 
     return (
         <div className="login-container">
             <h1>Login</h1>
+            {!isAllowedBrowser && (
+                <p className="error-message">
+                    This application is optimized for Google Chrome. Please switch to Chrome to continue.
+                </p>
+            )}
             <form onSubmit={handleLogin}>
                 <div className="input-group">
                     <label htmlFor="username">Username</label>
@@ -55,7 +77,7 @@ const LoginV5 = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn">
+                <button type="submit" className="btn" disabled={!isAllowedBrowser}>
                     Login
                 </button>
             </form>
@@ -64,4 +86,4 @@ const LoginV5 = () => {
     );
 };
 
-export default LoginV5;
+export default Login;
