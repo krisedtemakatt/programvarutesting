@@ -9,7 +9,7 @@ const LoggedIn = () => {
 
     return (
         <div style={{ textAlign: "center", marginTop: "50px" }}>
-            <h1>Welcome, {username}!</h1>
+            <h1 id="username_tag">Welcome, {username}!</h1>
             <p>You are successfully logged in.</p>
             <button 
                 onClick={() => navigate("/")}
