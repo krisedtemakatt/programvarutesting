@@ -3,22 +3,30 @@ import { useNavigate } from "react-router-dom";
 import users from "../users"; // Import user data
 import "./Login.css";
 
+//Main issue is functionality
+//Secondary issue is an added delay of 1.2 seconds and a popup message without an x button
+
 const LoginV1 = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
 
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
       e.preventDefault();
   
-      // Incorrect logic: The password check is skipped, and username is ignored
+      
       if (username === "admin" || password === "wrongPassword") {
           setErrorMessage(""); 
-          navigate("/loggedin", { state: { username } });
+          setTimeout(() => {
+            navigate("/loggedin", { state: { username } });
+          }, 1200);
+          
       } else {
           setErrorMessage("Invalid username or password!");
+          setShowPopup(true);
       }
   };
 
@@ -53,6 +61,15 @@ const LoginV1 = () => {
                 </button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+            {showPopup && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <p>Incorrect credentials. Please try again!</p>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
