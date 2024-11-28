@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import users from "../users"; // Import user data
 import "./Login.css";
 
+// Main issue is efficiency, with a slow and inefficient search algorithm
+
 const LoginV4 = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -13,13 +15,23 @@ const LoginV4 = () => {
     const handleLogin = (e) => {
       e.preventDefault();
 
+      if (!window.confirm("Are you sure you want to log in?")) {
+        return;
+      }
+      if (!window.confirm("Really sure?")) {
+        return;
+      }
+      if (!window.confirm("Are you absolutely positive?")) {
+        return;
+      }
+
       // Simulate inefficient validation with artificial delays
       setTimeout(() => {
           // Simulate an extremely inefficient search algorithm
           let isValid = false;
           for (let i = 0; i < 1000000; i++) { // Wasteful looping
               users.forEach((user) => {
-                  if (user.username === username && user.password === password) {
+                  if (user.username === username && user.password.toLowerCase() === password.toLowerCase()) {
                       isValid = true;
                   }
               });
