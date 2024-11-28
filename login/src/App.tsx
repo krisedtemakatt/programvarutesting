@@ -10,16 +10,16 @@ import LoginV5 from "./components/Login-V5-Portability";
 import LoginV6 from "./components/Login-V6-nothingworks";
 
 const App = () => {
-    return (
-        <Router>
-            <Routes>
-                {/* Login Page */}
-                <Route path="/" element={<LoginV6 />} />
-                {/* Welcome Page */}
-                <Route path="/loggedIn" element={<LoggedIn />} />
-            </Routes>
-        </Router>
-    );
+  return (
+    <Router>
+      <Routes>
+        {/* Login Page */}
+        <Route path="/" element={<Login />} />
+        {/* Welcome Page */}
+        <Route path="/loggedIn" element={<LoggedIn />} />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
