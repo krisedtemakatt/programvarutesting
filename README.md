@@ -19,8 +19,9 @@
 
 ### Usability
 
-- [ ] Verify if the font, text color, and color coding of the Login page is intuitive and easy to read.
-- [ ] Verify that the login page looks as you would expect.
+- [ ] Verify that the font is easy to read.
+- [ ] Verify that the contrast of text color and background has a high enough contrast
+- [ ] Verify that the layout of the login page is as you would expect.
 - [ ] Verify that the labels are useful.
 - [ ] Verify that the page is not really ugly.
 
