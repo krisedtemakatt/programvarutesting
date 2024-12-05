@@ -23,7 +23,7 @@
 - [x] Verify that the contrast of text color and background has a high enough contrast
 - [x] Verify that the layout of the login page is as you would expect.
 - [x] Verify that the labels are useful.
-- [?] Verify that the page is not really ugly.
+- [x] Verify that the page is not really ugly.
 
 ### Efficiency (2)
 
@@ -40,4 +40,4 @@
 
 22/23 rätt
 
-felet var i usability.
+0 fel
