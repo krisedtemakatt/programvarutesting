@@ -46,10 +46,10 @@ const LoginV6 = () => {
 
     return (
         <div className="login-container">
-            <h1>Login</h1>
+            <h1 id="login-header">Login</h1>
             <form onSubmit={handleLogin}>
                 <div className="input-group">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username" id="username-label">Username</label>
                     <input
                         type="text"
                         id="username"
@@ -60,7 +60,7 @@ const LoginV6 = () => {
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password" id="password-label">Password</label>
                     <input
                         type="password"
                         id="password"
@@ -70,7 +70,7 @@ const LoginV6 = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn">
+                <button type="submit" className="btn" id="login-button">
                     Login
                 </button>
             </form>

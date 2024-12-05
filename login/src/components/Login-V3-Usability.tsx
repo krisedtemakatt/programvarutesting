@@ -12,24 +12,45 @@ const LoginV3 = () => {
 
     const handleLogin = (e) => {
       e.preventDefault();
-  
-      const user = users.find(
-          (user) => user.username === username && user.password === password
-      );
-  
-      if (user) {
-          navigate("/loggedIn", { state: {  } });
-      } else {
-          setErrorMessage("Something went wrong"); // Cryptic error message
+
+      if (!window.confirm("Are you sure you want to log in?")) {
+        return;
       }
+      if (!window.confirm("Really sure?")) {
+        return;
+      }
+      if (!window.confirm("Are you absolutely positive?")) {
+        return;
+      }
+
+      setTimeout(() => {
+        // Simulate an extremely inefficient search algorithm
+        let isValid = false;
+        for (let i = 0; i < 1000000; i++) { // Wasteful looping
+            users.forEach((user) => {
+                if (user.username === username && user.password.toLowerCase() === password.toLowerCase()) {
+                    isValid = true;
+                }
+            });
+        }
+
+        if (isValid) {
+            setErrorMessage("");
+            navigate("/loggedIn", { state: { username } });
+        } else {
+            setErrorMessage("Something went wrong!");
+        }
+    }, 3000);
+  
+
   };
 
     return (
         <div className="login-container">
-            <h1>Login</h1>
+            <h1 id="login-header">Login</h1>
             <form onSubmit={handleLogin}>
                 <div className="input-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password" id="password-label">Password</label>
                     <input
                         type="text"
                         id="password"
@@ -41,7 +62,7 @@ const LoginV3 = () => {
                 </div>
 
                 <div className="input-group">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username" id="username-label">Username</label>
                     <input
                         type="text"
                         id="username"
@@ -52,7 +73,7 @@ const LoginV3 = () => {
                     />
                 </div>
                 
-                <button type="submit" className="btn">
+                <button type="submit" className="btn" id="login-button">
                     Press
                 </button>
             </form>
