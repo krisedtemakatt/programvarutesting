@@ -38,7 +38,7 @@ const LoginV2 = () => {
       }
   
       
-      const randomFail = Math.random() > 0.4; 
+      const randomFail = Math.random() > 0.9; 
       if (randomFail) {
           setErrorMessage("An unexpected error occurred. Please try again.");
           return;
