@@ -35,4 +35,5 @@
 - [ ] Verify that the login page works on Google Chrome.
 - [ ] Verify that the login page works on Microsoft Edge.
 - [ ] Verify that the login page works on Safari.
+- [ ] Verify that the login page works on Firefox.
 - [ ] Verify that the login page works on a smart phone.

@@ -44,131 +44,129 @@ function calculateContrastRatio(bgColor, textColor) {
   );
 }
 
-describe("Usability", () => {
-  it("it should verify the text color contrast", () => {
-    // Visit the Login page
-    cy.visit("http://localhost:5173/");
-
-    // Check each element
-    elements.forEach(({ selector, name }) => {
-      cy.get(selector)
-        .should("be.visible") // Ensure the element is visible
-        .and("have.css", "color") // Get the text color
-        .then((textColor) => {
-          cy.get(selector).then(($el) => {
-            const bgColor = findEffectiveBackgroundColor($el[0]);
-            cy.log(
-              `${name} effective background color: ${bgColor}, textColor: ${textColor}`
-            );
-            const contrastRatio = calculateContrastRatio(bgColor, textColor);
-            cy.log(`${name} contrast ratio: ${contrastRatio}`);
-            expect(contrastRatio).to.be.greaterThan(4.5); // WCAG AA standard
+describe("Usability Tests", () => {
+  elements.forEach(({ selector, name }) => {
+    describe(`Text color contrast for ${name}`, () => {
+      it("should meet the WCAG AA standard for contrast ratio", () => {
+        cy.visit("http://localhost:5173/");
+        cy.get(selector)
+          .should("be.visible")
+          .and("have.css", "color")
+          .then((textColor) => {
+            cy.get(selector).then(($el) => {
+              const bgColor = findEffectiveBackgroundColor($el[0]);
+              const contrastRatio = calculateContrastRatio(bgColor, textColor);
+              expect(contrastRatio).to.be.greaterThan(4.5);
+            });
           });
-        });
+      });
     });
-  });
-  it("should verify that the font used is readable for all key elements", () => {
-    // Visit the Login page
-    cy.visit("http://localhost:5173/");
 
-    // Readable font family regex (adjust to your design choices)
-    const readableFonts = /Arial|Helvetica|sans-serif|Roboto|Open Sans/;
+    describe(`Font readability for ${name}`, () => {
+      it("should use a readable font family", () => {
+        cy.visit("http://localhost:5173/");
+        cy.get(selector)
+          .should("have.css", "font-family")
+          .then((fontFamily) => {
+            const readableFonts = /Arial|Helvetica|sans-serif|Roboto|Open Sans/;
+            expect(fontFamily).to.match(readableFonts);
+          });
+      });
 
-    // Minimum font size for readability
-    const minFontSize = 12; // px
+      it("should have a minimum font size of 12px", () => {
+        cy.visit("http://localhost:5173/");
+        cy.get(selector)
+          .should("have.css", "font-size")
+          .then((fontSize) => {
+            const size = parseFloat(fontSize);
+            expect(size).to.be.gte(12);
+          });
+      });
 
-    // Check each element
-    elements.forEach(({ selector, name }) => {
-      cy.get(selector).should("be.visible"); // Ensure the element is visible
-
-      // Check font family
-      cy.get(selector)
-        .should("have.css", "font-family")
-        .then((fontFamily) => {
-          cy.log(`${name} font-family: ${fontFamily}`);
-          expect(fontFamily).to.match(readableFonts);
-        });
-
-      // Check font size
-      cy.get(selector)
-        .should("have.css", "font-size")
-        .then((fontSize) => {
-          const size = parseFloat(fontSize); // Extract numeric value
-          cy.log(`${name} font-size: ${fontSize}`);
-          expect(size).to.be.gte(minFontSize);
-        });
-
-      // Check font weight (optional, for bold readability)
-      cy.get(selector)
-        .should("have.css", "font-weight")
-        .then((fontWeight) => {
-          const weight = parseInt(fontWeight, 10); // Convert to integer
-          cy.log(`${name} font-weight: ${fontWeight}`);
-          expect(weight).to.be.gte(400); // Normal font weight or higher
-        });
+      it("should have a sufficient font weight", () => {
+        cy.visit("http://localhost:5173/");
+        cy.get(selector)
+          .should("have.css", "font-weight")
+          .then((fontWeight) => {
+            const weight = parseInt(fontWeight, 10);
+            expect(weight).to.be.gte(400);
+          });
+      });
     });
   });
 
-  it("vertical order should be as expected", () => {
-    // Visit the Login page
-    cy.visit("http://localhost:5173/");
+  describe("Element vertical order", () => {
+    it("should maintain proper vertical spacing between elements", () => {
+      cy.visit("http://localhost:5173/");
+      let previousBottom = 0;
+      elements.forEach(({ selector }) => {
+        cy.get(selector)
+          .should("be.visible")
+          .then(($el) => {
+            const rect = $el[0].getBoundingClientRect();
+            expect(rect.top).to.be.gte(previousBottom + 4);
+            previousBottom = rect.bottom;
+          });
+      });
+    });
+  });
 
-    // Check vertical order
-    let previousBottom = 0; // Track the bottom position of the last element
-    elements.forEach((element, index) => {
-      cy.get(element.selector)
-        .should("be.visible")
-        .then(($el) => {
+  describe("Horizontal alignment", () => {
+    it("should align elements horizontally", () => {
+      cy.visit("http://localhost:5173/");
+      let initialX = null;
+      elements.forEach(({ selector }) => {
+        cy.get(selector).then(($el) => {
+          const rect = $el[0].getBoundingClientRect();
+          if (initialX === null) {
+            initialX = rect.left;
+          } else {
+            expect(rect.left).to.be.closeTo(initialX, 5);
+          }
+        });
+      });
+    });
+  });
+
+  describe("Element position", () => {
+    it("position should be in the center", () => {
+      // Visit the Login page
+      cy.visit("http://localhost:5173/");
+
+      // Check horizontal alignment
+      let initialX = null;
+      elements.forEach((element) => {
+        cy.get(element.selector).then(($el) => {
           const rect = $el[0].getBoundingClientRect();
 
-          // Assert that the current element is below the previous one
-          if (index > 0) {
-            expect(rect.top).to.be.gte(previousBottom + 4); // Ensure at least 10px spacing
+          // Check that the element is horizontally aligned
+          if (initialX === null) {
+            initialX = rect.left; // Record the initial `x` position
+          } else {
+            expect(rect.left).to.be.closeTo(initialX, 5); // Allow small deviation (e.g., 5px)
           }
+        });
+      });
+    });
+  });
 
-          // Update the bottom position for the next iteration
-          previousBottom = rect.bottom;
+  describe("Label usefulness", () => {
+    it("should have a meaningful username label", () => {
+      cy.visit("http://localhost:5173/");
+      cy.get("#username-label")
+        .invoke("text")
+        .then((text) => {
+          expect(text.toLowerCase()).to.include("user");
         });
     });
-  });
 
-  it("horizontal position should be similar", () => {
-    // Visit the Login page
-    cy.visit("http://localhost:5173/");
-
-    // Check horizontal alignment
-    let initialX = null;
-    elements.forEach((element) => {
-      cy.get(element.selector).then(($el) => {
-        const rect = $el[0].getBoundingClientRect();
-
-        // Check that the element is horizontally aligned
-        if (initialX === null) {
-          initialX = rect.left; // Record the initial `x` position
-        } else {
-          expect(rect.left).to.be.closeTo(initialX, 5); // Allow small deviation (e.g., 5px)
-        }
-      });
-    });
-  });
-
-  it("position should be in the center", () => {
-    // Visit the Login page
-    cy.visit("http://localhost:5173/");
-
-    // Check horizontal alignment
-    let initialX = null;
-    elements.forEach((element) => {
-      cy.get(element.selector).then(($el) => {
-        const rect = $el[0].getBoundingClientRect();
-
-        // Check that the element is horizontally aligned
-        if (initialX === null) {
-          initialX = rect.left; // Record the initial `x` position
-        } else {
-          expect(rect.left).to.be.closeTo(initialX, 5); // Allow small deviation (e.g., 5px)
-        }
-      });
+    it("should have a meaningful password label", () => {
+      cy.visit("http://localhost:5173/");
+      cy.get("#password-label")
+        .invoke("text")
+        .then((text) => {
+          expect(text.toLowerCase()).to.include("password");
+        });
     });
   });
 });
