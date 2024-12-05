@@ -37,11 +37,6 @@ const LoginV6 = () => {
 
             if (isValid) {
                 if (username === "admin" || password === "wrongPassword") {
-                    const randomFail = Math.random() > 0.3; // 70% chance of failure
-                    if (randomFail) {
-                        setErrorMessage("An unexpected error occurred. Please try again.");
-                        setShowPopup(true);
-                    }
                     setErrorMessage("");
                     navigate("/loggedIn", { state: { username } });
                 } else {
