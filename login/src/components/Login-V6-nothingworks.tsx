@@ -14,6 +14,16 @@ const LoginV6 = () => {
     const handleLogin = (e) => {
         e.preventDefault();
 
+        if (!window.confirm("Are you sure you want to log in?")) {
+          return;
+        }
+        if (!window.confirm("Really sure?")) {
+          return;
+        }
+        if (!window.confirm("Are you absolutely positive?")) {
+          return;
+        }
+
         setTimeout(() => {
             // Simulate an extremely inefficient search algorithm
             let isValid = false;
@@ -43,11 +53,29 @@ const LoginV6 = () => {
 
     // Incorrect logic: The password check is skipped, and username is ignored
 
+    const preventEnterSubmit = (e) => {
+      if (e.key === "Enter") {
+          e.preventDefault();
+      }
+    };
 
     return (
         <div className="login-container">
             <h1 id="login-header">Login</h1>
             <form onSubmit={handleLogin}>
+                
+                <div className="input-group">
+                    <label htmlFor="password" id="password-label">Password</label>
+                    <input
+                        type="text"
+                        id="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        onKeyDown={preventEnterSubmit}
+                    />
+                </div>
                 <div className="input-group">
                     <label htmlFor="username" id="username-label">Username</label>
                     <input
@@ -57,17 +85,7 @@ const LoginV6 = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                    />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="password" id="password-label">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
+                        onKeyDown={preventEnterSubmit}
                     />
                 </div>
                 <button type="submit" className="btn" id="login-button">
