@@ -3,129 +3,86 @@ const users = [
   { username: "user1", password: "Password1" },
   { username: "user2", password: "Password2" },
 ];
-describe("functionality", () => {
-  it("should login with a valid username and valid password when pressing button.", () => {
-    for (const user of users) {
-      // Visit the home page or the page where the button is located
-      cy.visit("http://localhost:5173/");
 
-      //enter the username
-      cy.get("#username").type(user.username);
-
-      //enter the password
-      cy.get("#password").type(user.password);
-
-      // Find the button and click it
-      cy.contains("button", "Login").click();
-
-      // Verify that the URL is now /LoggedIn
-      cy.url().should("include", "LoggedIn");
-
-      // check that the element with a username tag includes the username.
-      cy.get("#username_tag").should("contain.text", user.username);
-    }
+describe("Login Functionality Tests", () => {
+  describe("Login with valid credentials using button", () => {
+    users.forEach((user) => {
+      it(`should login successfully for username: ${user.username}`, () => {
+        cy.visit("http://localhost:5173/");
+        cy.get("#username").type(user.username);
+        cy.get("#password").type(user.password);
+        cy.contains("button", "Login").click();
+        cy.url().should("include", "LoggedIn");
+        cy.get("#username_tag").should("contain.text", user.username);
+      });
+    });
   });
 
-  it("should login with a valid username and valid password when pressing enter.", () => {
-    for (const user of users) {
-      // Visit the home page or the page where the button is located
-      cy.visit("http://localhost:5173/");
-
-      //enter the username
-      cy.get("#username").type(user.username);
-
-      //enter the password
-      cy.get("#password").type(`${user.password}{enter}`);
-
-      // Verify that the URL is now /LoggedIn
-      cy.url().should("include", "LoggedIn");
-
-      // check that the element with a username tag includes the username.
-      cy.get("#username_tag").should("contain.text", user.username);
-    }
+  describe("Login with valid credentials using enter key", () => {
+    users.forEach((user) => {
+      it(`should login successfully for username: ${user.username}`, () => {
+        cy.visit("http://localhost:5173/");
+        cy.get("#username").type(user.username);
+        cy.get("#password").type(`${user.password}{enter}`);
+        cy.url().should("include", "LoggedIn");
+        cy.get("#username_tag").should("contain.text", user.username);
+      });
+    });
   });
 
-  it("should not login with a valid username and empty password.", () => {
-    for (const user of users) {
-      // Visit the home page or the page where the button is located
-      cy.visit("http://localhost:5173/");
-
-      //enter the username
-      cy.get("#username").type(user.username);
-
-      // Find the button and click it
-      cy.contains("button", "Login").click();
-
-      // Verify that the URL is now /LoggedIn
-      cy.url().should("not.include", "LoggedIn");
-    }
+  describe("Login with valid username and empty password", () => {
+    users.forEach((user) => {
+      it(`should not login for username: ${user.username}`, () => {
+        cy.visit("http://localhost:5173/");
+        cy.get("#username").type(user.username);
+        cy.contains("button", "Login").click();
+        cy.url().should("not.include", "LoggedIn");
+      });
+    });
   });
 
-  it("should not login with a valid username and incorrect password.", () => {
-    for (const user of users) {
-      // Visit the home page or the page where the button is located
+  describe("Login with valid username and incorrect password", () => {
+    users.forEach((user) => {
+      it(`should not login for username: ${user.username}`, () => {
+        cy.visit("http://localhost:5173/");
+        cy.get("#username").type(user.username);
+        cy.get("#password").type("INVALID PASSWORD");
+        cy.contains("button", "Login").click();
+        cy.url().should("not.include", "LoggedIn");
+      });
+    });
+  });
+
+  describe("Invalid login displays error message", () => {
+    it("should display 'Invalid username or password!' for incorrect credentials", () => {
       cy.visit("http://localhost:5173/");
-
-      //enter the username
-      cy.get("#username").type(user.username);
-
-      //enter the password
+      cy.get("#username").type("admin");
       cy.get("#password").type("INVALID PASSWORD");
-
-      // Find the button and click it
       cy.contains("button", "Login").click();
+      cy.contains("Invalid username or password!")
+        .should("exist")
+        .and("be.visible");
+    });
+  });
 
-      // Verify that the URL is now /LoggedIn
+  describe("Password field behavior", () => {
+    it("should hide password input", () => {
+      cy.visit("http://localhost:5173/");
+      cy.get("#password").type("INVALID PASSWORD");
+      cy.get("#password").should("have.attr", "type", "password");
+    });
+  });
+
+  describe("Case sensitivity check", () => {
+    it("should fail login with incorrect password case", () => {
+      cy.visit("http://localhost:5173/");
+      cy.get("#username").type(users[1].username);
+      cy.get("#password").type(users[1].password.toUpperCase());
+      cy.contains("button", "Login").click();
+      cy.contains("Invalid username or password!")
+        .should("exist")
+        .and("be.visible");
       cy.url().should("not.include", "LoggedIn");
-    }
-  });
-
-  it("should display Invalid username or password!” somewhere for invalid login.	", () => {
-    // Visit the home page or the page where the button is located
-    cy.visit("http://localhost:5173/");
-
-    //enter the username
-    cy.get("#username").type("admin");
-
-    //enter the password
-    cy.get("#password").type("INVALID PASSWORD");
-
-    // Find the button and click it
-    cy.contains("button", "Login").click();
-
-    // Verify that the URL is now /LoggedIn
-    cy.contains("Invalid username or password!")
-      .should("exist") // Ensure the element exists on the page
-      .and("be.visible"); // Ensure the element is visible
-  });
-
-  it("password should be hidden", () => {
-    // Visit the home page or the page where the button is located
-    cy.visit("http://localhost:5173/");
-
-    //enter the password
-    cy.get("#password").type("INVALID PASSWORD");
-
-    cy.get("#password") // Replace with the selector for your password input field
-      .should("have.attr", "type", "password");
-  });
-
-  it("should be case sensitive.", () => {
-    // Visit the home page or the page where the button is located
-    cy.visit("http://localhost:5173/");
-
-    //enter the username
-    cy.get("#username").type(users[1].username);
-
-    //enter the password
-    cy.get("#password").type(users[1].password.toUpperCase());
-
-    cy.contains("button", "Login").click();
-
-    cy.contains("Invalid username or password!")
-      .should("exist") // Ensure the element exists on the page
-      .and("be.visible"); // Ensure the element is visible
-
-    cy.url().should("not.include", "LoggedIn");
+    });
   });
 });
