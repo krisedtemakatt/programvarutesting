@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import users from "../users"; // Import user data
 import "./LoginV3.css";
 
-const LoginV6 = () => {
+const LoginV3 = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -109,4 +109,4 @@ const LoginV6 = () => {
   );
 };
 
-export default LoginV6;
+export default LoginV3;

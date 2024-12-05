@@ -1,36 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import users from "../users"; // Import user data
 import "./Login.css";
 
-//Main issue is functionality
-//Secondary issue is an added delay of 1.2 seconds and a popup message without an x button
+//Main issue is reliability, with a random failure rate and unable to recover from failure
+//Seconadary issue is check for user credentials
 
-const LoginV1 = () => {
+const LoginV2 = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [isAllowedBrowser, setIsAllowedBrowser] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    console.log(userAgent);
+
+    // Detect Chrome only (not Edge or Safari)
+    if (userAgent.includes("chrome") && !userAgent.includes("edg")) {
+      setIsAllowedBrowser(true);
+    } else {
+      setIsAllowedBrowser(false);
+    }
+  }, []);
+
+  const handleLogin = (e: Event) => {
     e.preventDefault();
 
-    if (username === "admin" || password === "wrongPassword") {
-      setErrorMessage("");
-      setTimeout(() => {
-        navigate("/LoggedIn", { state: { username } });
-      }, 1200);
+    if (!isAllowedBrowser) {
+      setErrorMessage("Your browser is not supported.");
+      return;
+    }
+
+    const randomFail = Math.random() > 0.9;
+    if (randomFail) {
+      setErrorMessage("An unexpected error occurred. Please try again.");
+      return;
+    }
+
+    const user = users.find((user) => user.username === username);
+
+    if (user) {
+      navigate("/LoggedIn", { state: { username: user.username } });
     } else {
       setErrorMessage("Invalid username or password!");
       setShowPopup(true);
-    }
-  };
-
-  const preventEnterSubmit = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
     }
   };
 
@@ -48,7 +66,6 @@ const LoginV1 = () => {
             placeholder="Enter your username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            onKeyDown={preventEnterSubmit}
             required
           />
         </div>
@@ -62,7 +79,6 @@ const LoginV1 = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={preventEnterSubmit}
             required
           />
         </div>
@@ -83,4 +99,4 @@ const LoginV1 = () => {
   );
 };
 
-export default LoginV1;
+export default LoginV2;
