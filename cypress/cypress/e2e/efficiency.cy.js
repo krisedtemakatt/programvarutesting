@@ -1,4 +1,4 @@
-const user = { username: "admin", password: "12345" };
+const user = { username: "user1", password: "Password1" };
 
 describe("efficiency", () => {
   describe("login speed", () => {

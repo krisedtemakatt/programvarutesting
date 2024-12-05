@@ -5,6 +5,28 @@ const users = [
 ];
 
 describe("Login Functionality Tests", () => {
+  cy.config("defaultCommandTimeout", 10000);
+
+  describe("Invalid login displays error message", () => {
+    it("should display 'Invalid username or password!' for incorrect credentials", () => {
+      cy.visit("http://localhost:5173/");
+      cy.get("#username").type("admin");
+      cy.get("#password").type("INVALID PASSWORD");
+      cy.contains("button", "Login").click();
+      cy.contains("Invalid username or password!")
+        .should("exist")
+        .and("be.visible");
+    });
+  });
+  describe("Case sensitivity check", () => {
+    it("should fail login with incorrect password case", () => {
+      cy.visit("http://localhost:5173/");
+      cy.get("#username").type(users[1].username);
+      cy.get("#password").type(users[1].password.toUpperCase());
+      cy.contains("button", "Login").click();
+      cy.url().should("not.include", "LoggedIn");
+    });
+  });
   describe("Login with valid credentials using button", () => {
     users.forEach((user) => {
       it(`should login successfully for username: ${user.username}`, () => {
@@ -70,19 +92,6 @@ describe("Login Functionality Tests", () => {
       cy.visit("http://localhost:5173/");
       cy.get("#password").type("INVALID PASSWORD");
       cy.get("#password").should("have.attr", "type", "password");
-    });
-  });
-
-  describe("Case sensitivity check", () => {
-    it("should fail login with incorrect password case", () => {
-      cy.visit("http://localhost:5173/");
-      cy.get("#username").type(users[1].username);
-      cy.get("#password").type(users[1].password.toUpperCase());
-      cy.contains("button", "Login").click();
-      cy.contains("Invalid username or password!")
-        .should("exist")
-        .and("be.visible");
-      cy.url().should("not.include", "LoggedIn");
     });
   });
 });

@@ -8,7 +8,7 @@
 - [ ] Verify if the data in password field is either visible as asterisk or bullet signs.
 - [ ] Verify if the ‘Enter’ key of the keyboard is working correctly on the login page.
 - [ ] Verify that the login button attempts a login.
-- [ ] Logging in will the take the user to /loggedIn
+- [ ] Logging in will the take the user to /LoggedIn
 - [ ] Verify that a user that is logged in to the correct account.
 - [ ] Case sensitive
 

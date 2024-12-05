@@ -2,20 +2,20 @@
 
 ### Functionality
 
-- [-] Verify that a user can login with a valid username and valid password.
-- [-] Verify if a user cannot login with a valid username and an invalid password.
-- [-] Verify that it says “Invalid username or password!” somewhere for invalid login.
+- [x] Verify that a user can login with a valid username and valid password.
+- [x] Verify if a user cannot login with a valid username and an invalid password.
+- [x] Verify that it says “Invalid username or password!” somewhere for invalid login.
 - [x] Verify if the data in password field is either visible as asterisk or bullet signs.
 - [x] Verify if the ‘Enter’ key of the keyboard is working correctly on the login page.
 - [x] Verify that the login button attempts a login.
-- [x] Logging in will the take the user to /loggedIn
+- [x] Logging in will the take the user to /LoggedIn
 - [x] Verify that a user that is logged in to the correct account.
-- [-] Case sensitive
+- [x] Case sensitive
 
 ### Reliability
 
 - [x] If an error occurs, the user can attempt to login again.
-- [-] Logging in should behave the same way every time.
+- [x] Logging in should behave the same way every time.
 
 ### Usability
 
@@ -32,6 +32,6 @@
 ### Portability
 
 - [x] Verify that the login page works on Google Chrome.
-- [-] Verify that the login page works on Microsoft Edge.
-- [-] Verify that the login page works on Safari.
-- [-] Verify that the login page works on a smart phone.
+- [x] Verify that the login page works on Microsoft Edge.
+- [x] Verify that the login page works on Safari.
+- [x] Verify that the login page works on a smart phone.
