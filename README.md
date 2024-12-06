@@ -1,4 +1,6 @@
-## Checklist
+## QA Checklist
+
+Someone hacked our website and might have changed the code in some way. You are tasked with finding out what they did. Originally, this checklist was used to create the website and it was checked and true. It is your job to find out if that is still the case.
 
 ### Functionality
 
@@ -10,7 +12,7 @@
 - [ ] Verify that the login button attempts a login.
 - [ ] Logging in will the take the user to /LoggedIn
 - [ ] Verify that a user that is logged in to the correct account.
-- [ ] Case sensitive
+- [ ] Verify that the password is case sensitive
 
 ### Reliability
 
