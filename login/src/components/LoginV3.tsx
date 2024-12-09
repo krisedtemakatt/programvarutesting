@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState, KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import users from "../users"; // Import user data
 import "./LoginV3.css";
@@ -11,7 +11,7 @@ const LoginV3 = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!window.confirm("Are you sure you want to log in?")) {
@@ -54,7 +54,7 @@ const LoginV3 = () => {
 
   // Incorrect logic: The password check is skipped, and username is ignored
 
-  const preventEnterSubmit = (e) => {
+  const preventEnterSubmit = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
     }

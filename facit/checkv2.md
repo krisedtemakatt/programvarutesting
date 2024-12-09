@@ -14,7 +14,7 @@
 
 ### Reliability
 
-- [x] If an error occurs, the user can attempt to login again.
+- [-] If an error occurs, the user can attempt to login again.
 - [-] Logging in should behave the same way every time.
 
 ### Usability

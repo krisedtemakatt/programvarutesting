@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import users from "../users"; // Import user data
 import "./Login.css";
@@ -28,7 +28,7 @@ const LoginV2 = () => {
     }
   }, []);
 
-  const handleLogin = (e: Event) => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!isAllowedBrowser) {

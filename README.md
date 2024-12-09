@@ -1,6 +1,25 @@
 ## QA Checklist
 
-Someone hacked our website and might have changed the code in some way. You are tasked with finding out what they did. Originally, this checklist was used to create the website and it was checked and true. It is your job to find out if that is still the case.
+Someone hacked our login page and might have changed the code in some way. You are tasked with finding out what they did. Originally, this checklist was used to create the website and it was checked and true. It is your job to find out if that is still the case.
+
+Our most important customers use Google Chrome, so start there when making sure that things work as expecteed.
+
+We have a couple of test users that you have at your disposal:
+
+1. username: "admin", password: "12345"
+2. username: "user1", password: "Password1"
+3. username: "user2", password: "Password2"
+
+There are 3 different versions of our website, please try each version and see what is wrong.
+
+**Version 1**:
+https://gopiss.netlify.app?v=1
+
+**Version 2**:
+https://gopiss.netlify.app?v=2
+
+**Version 3**:
+https://gopiss.netlify.app?v=3
 
 ### Functionality
 
@@ -39,3 +58,7 @@ Someone hacked our website and might have changed the code in some way. You are 
 - [ ] Verify that the login page works on Safari.
 - [ ] Verify that the login page works on Firefox.
 - [ ] Verify that the login page works on a smart phone.
+
+nån människa hade fel,
+alla människor hade fel
+inga människor hade fel

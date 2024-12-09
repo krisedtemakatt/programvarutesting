@@ -10,7 +10,7 @@
 - [x] Verify that the login button attempts a login.
 - [x] Logging in will the take the user to /LoggedIn
 - [x] Verify that a user that is logged in to the correct account.
-- [x] Case sensitive
+- [ mistake ] Case sensitive
 
 ### Reliability
 
