@@ -1,8 +1,8 @@
 ## QA Checklist
 
-Someone hacked our login page and might have changed the code in some way. You are tasked with finding out what they did. Originally, this checklist was used to create the website and it was checked and true. It is your job to find out if that is still the case.
+Someone hacked our login page and might have changed the code in some way. You are tasked with finding out what they did. Originally, this checklist was used to create the website, and it was checked and true. It is your job to find out if that is still the case.
 
-Our most important customers use Google Chrome, so start there when making sure that things work as expecteed.
+Our most important customers use Google Chrome, so start there when making sure that things work as expected.
 
 We have a couple of test users that you have at your disposal:
 
@@ -23,19 +23,19 @@ https://loginpagetesting.netlify.app/?v=3
 
 ### Functionality
 
-- [ ] Verify that a user can login with a valid username and valid password.
-- [ ] Verify if a user cannot login with a valid username and an invalid password.
+- [ ] Verify that a user can log in with a valid username and valid password.
+- [ ] Verify if a user cannot log in with a valid username and an invalid password.
 - [ ] Verify that it says “Invalid username or password!” somewhere for invalid login.
 - [ ] Verify if the data in password field is either visible as asterisk or bullet signs.
 - [ ] Verify if the ‘Enter’ key of the keyboard is working correctly on the login page.
 - [ ] Verify that the login button attempts a login.
 - [ ] Logging in will the take the user to /LoggedIn
 - [ ] Verify that a user that is logged in to the correct account.
-- [ ] Verify that the password is case sensitive
+- [ ] Verify that the password is case-sensitive
 
 ### Reliability
 
-- [ ] If an error occurs, the user can attempt to login again.
+- [ ] If an error occurs, the user can attempt to log in again.
 - [ ] Logging in should behave the same way every time.
 
 ### Usability
@@ -48,8 +48,8 @@ https://loginpagetesting.netlify.app/?v=3
 
 ### Efficiency
 
-- [ ] Verify the time taken to login is less than 1 second.
-- [ ] Verify that logging in is not unneccessarily complicated.
+- [ ] Verify the time taken to log in is less than 1 second.
+- [ ] Verify that logging in is not unnecessarily complicated.
 
 ### Portability
 
@@ -57,8 +57,4 @@ https://loginpagetesting.netlify.app/?v=3
 - [ ] Verify that the login page works on Microsoft Edge.
 - [ ] Verify that the login page works on Safari.
 - [ ] Verify that the login page works on Firefox.
-- [ ] Verify that the login page works on a smart phone.
-
-nån människa hade fel,
-alla människor hade fel
-inga människor hade fel
+- [ ] Verify that the login page works on a smartphone.
