@@ -397,3 +397,4 @@ versions.forEach((version) => {
 });
 
 // var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+// let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
