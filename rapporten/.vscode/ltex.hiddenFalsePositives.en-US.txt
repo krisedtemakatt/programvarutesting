@@ -1,1 +1,0 @@
-{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QOliver Levay, Kristina Sedelius, Adam Tegelberg, Emma Haggren Lunds tekniska högskola Lund University Lund, Sweden (ol1662le-s, kr0363se-s, ad3444te-s, em5261ha-s)@student.lu.se\\E$"}

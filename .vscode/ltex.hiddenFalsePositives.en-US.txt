@@ -1,0 +1,10 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QOliver Levay, Kristina Sedelius, Adam Tegelberg, Emma Haggren Lunds tekniska högskola Lund University Lund, Sweden (ol1662le-s, kr0363se-s, ad3444te-s, em5261ha-s)@student.lu.se\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QVerify if the data in password field is either visible as asterisk or bullet signs.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QLogging in will the take the user to /LoggedIn Verify that a user that is logged in to the correct account.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QVerify if the ‘Enter’ key of the keyboard is working correctly on the login page.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QVerify that the login button attempts a login.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QVerify that logging in will the take the user to /LoggedIn Verify that a user that is logged in to the correct account.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QVerify that the password is Case-sensitive\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QVerify that logging in will the take the user to /LoggedIn Verify that a user that is logged in to the correct account.\\E$"}
+{"rule":"EXTREME_ADJECTIVES","sentence":"^\\QVerify that the page is not really ugly.\\E$"}
+{"rule":"EXTREME_ADJECTIVES","sentence":"^\\QA login website that is \"not really ugly\" was assumed to have readable text, an expected layout, centered elements and appropriate spacing between elements.\\E$"}
