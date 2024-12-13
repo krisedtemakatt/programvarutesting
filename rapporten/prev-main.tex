@@ -110,9 +110,9 @@ The team that created the website and wrote the automated tests had no further c
 
 The versions that were tested are outlined below:
 \begin{itemize}
-    \item \textbf{Version 1}: The original version where all the criteria were met. As seen in figure \ref{v1-2-full} and figure \ref{v1-2-zoom}. \cite{loginV1}
-    \item \textbf{Version 2}: A seemingly proper version with hidden issues that included a number of problems, but mainly some functionality and portability problems. As seen in figure \ref{v1-2-full} and figure \ref{v1-2-zoom}. \cite{loginV2}
-    \item \textbf{Version 3}: A clearly visually displeasing version focus of this version was to make the site break usability, unreliable, inefficient and without some basic functionality.As seen in figure \ref{v3-full} and figure \ref{v3-zoom}. \cite{loginV3}
+    \item \textbf{Version 1}: The original version where all the criteria were met. As seen in figure \ref{v1-2-full} and figure \ref{v1-2-zoom}.
+    \item \textbf{Version 2}: A seemingly proper version with hidden issues that included a number of problems, but mainly some functionality and portability problems. As seen in figure \ref{v1-2-full} and figure \ref{v1-2-zoom}.
+    \item \textbf{Version 3}: A clearly visually displeasing version focus of this version was to make the site break usability, unreliable, inefficient and without some basic functionality. As seen in figure \ref{v3-full} and figure \ref{v3-zoom}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -231,21 +231,32 @@ Using Cypress to create automated testing turned out to be mostly straightforwar
 
 The test code is available in its entirety in the appendix bajs. %%todo reference correctly
 
-\subsection{Issues Found}
-\textbf{Automated Testing Results (Cypress)}:
+\subsection{Automated Testing Results}
 The results from running the test have been compiled to 4 reports, one for each browser supported. The reports are available at appendix bajs. %%todo reference correctly
-After the test reports were compiled the team used them to determine the checklist validity.
-\subsubsection{Version 1 - Fully functional}
-All tests passed which lead the team to believe that all the requirements are fulfilled.
+After the test reports were compiled the team used them to determine the checklist validity. The research teams interpretation of the results are outlined in its entirety in appendix bajs. %%todo reference correctly
+In order to compare automated testing with human testing the results from both are compiled in a Google Sheets document available in appendix bajs.
+The accuracy of the answers are outlined below.
+\subsubsection{Fully functional}
+All tests passed which lead the team to believe that all the requirements are fulfilled. This was also the correct answer according to the keys that the team had prepared before initiating testing.
 
-\textbf{Human Testing Results}:
-\subsection{Issues Found}
-\textbf{Automated Testing Results (Cypress)}:
+\subsubsection{Mostly reliability and portability issues}
+Checklist item 3.1 \textit{Verify that it is possible to login again after an error} was incorrectly marked as TRUE. In the testing code an error is produced by attempting to enter an incorrect password, but in this version every password is correct, so no error is produced. This issue would be remedied by creating a test that produces an error by entering an incorrect username as well.
+% DISCUSS: One could argue that it can be marked off as not relevant because other test cases concluded that users can log in with any kind of password making it irrelevant if the user can log in again after an error.
+% DISCUSS: Even if the error would be irrelevant it still is a good testament to how the writers of the tests will have inevitably errors in the code because of unforseen circumstances. 
+% DISCUSS: Humans made the same mistake
 
-\textbf{Human Testing Results}:
+\subsubsection{A lot of issues}
+Surprisingly version 3 that we thought would be difficult for the automated testing suite to evaluate did not have any mistakes. The tests would suggest that the labels are useful because it says "Username" and "Password" on them. The tests show that the font is not a usual one and the font size is too small, and the contrast is bad and hard to read. The team made the call that the labels are not useful based on this information.
 
-The summary of the human testing, while matching
-A summary of problems identified by human testers, categorized similarly. Call this set of problems detected B.
+% What is the overlap between the software quality issues that can be identified by human testers and those that can be identified by automated Black-Box testing? %($A \cap B$)
+% Which types of software quality problems can only be found by human testers, and which can only be identified by automated Black-Box testing?
+% Which types of issues can't be identified by either method? %($A \cup B)^c$
+
+In summary all the issues that we set out to test \textit{can} be identified with automated testing. % discuss how some are harder to identify than others, is it worth it to write tests for?
+Therefore, the answer of question 3, is no. There are no type of issues that cannot be identified by either automated tests or human testers because automated tests \textit{can} identify all types of issues we set out to find.
+
+\subsection{Human Testing Results}:
+The results from the human testing was inconsistent, but all issues had at least one correct answer from one of the test subjects. The humans were terrible at identifying Portability issues because if they did not have the browser requested they did not make efforts to test it on a friends computer or install a new browser. Some test subjects assumed that it would work on the other browsers because they could not be bothered to test it out, or did not answer. Other test subjects mistakenly assumed that the site worked on a given browser because it loaded correctly. If they had attempted to log in they would find out that it does not work. The automated tests ran by the computer had no issue running all the tests again with a different browser. Boredom and laziness is not a factor for the computer. For version 3 one test subject could not log in because they did not try the admin account which gave wildly inaccurate results and tracking the biggest fault would be difficult. The computer did not have any issue logging in with each account. %% Discuss: Motivation was low for the test subjects to follow the instructions thoroughly, probably because they are not paid to do this. Paid QA testers would probably do a better job. The computer does not require payment to do as they are told.
 
 \subsection{Analysis of Overlap and Differences}
 \textbf{Union (A $\cup$ B)}: Issues found at all. \\
@@ -308,9 +319,6 @@ Emma: I contributed to creating the login page with the different versions accor
 
 \begin{thebibliography}{9}
     \bibitem{ISO} ISO/IEC 9126, Software engineering — Product quality, The International Organization for Standardization, 2001-06.
-    \bibitem{loginV1} Login Page Version 1 https://loginpagetesting.netlify.app/ , by the authors of this paper, this link might not work in the future, but does as of writing this paper
-    \bibitem{loginV2} Login Page Version 2 https://loginpagetesting.netlify.app/?v=2 , by the authors of this paper, this link might not work in the future, but does as of writing this paper
-    \bibitem{loginV3} Login Page Version 3 https://loginpagetesting.netlify.app/?v=3 , by the authors of this paper, this link might not work in the future, but does as of writing this paper
 \end{thebibliography}
 
 \appendices

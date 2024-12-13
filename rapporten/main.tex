@@ -254,18 +254,27 @@ Surprisingly version 3 that we thought would be difficult for the automated test
 % Which types of issues can't be identified by either method? %($A \cup B)^c$
 
 In summary all the issues that we set out to test \textit{can} be identified with automated testing. % discuss how some are harder to identify than others, is it worth it to write tests for?
-Therefore, the answer of question 3, is no. There are no type of issues that cannot be identified by either automated tests or human testers because automated tests \textit{can} identify all types of issues we set out to find.
-
 \subsection{Human Testing Results}:
 The results from the human testing was inconsistent, but all issues had at least one correct answer from one of the test subjects. The humans were terrible at identifying Portability issues because if they did not have the browser requested they did not make efforts to test it on a friends computer or install a new browser. Some test subjects assumed that it would work on the other browsers because they could not be bothered to test it out, or did not answer. Other test subjects mistakenly assumed that the site worked on a given browser because it loaded correctly. If they had attempted to log in they would find out that it does not work. The automated tests ran by the computer had no issue running all the tests again with a different browser. Boredom and laziness is not a factor for the computer. For version 3 one test subject could not log in because they did not try the admin account which gave wildly inaccurate results and tracking the biggest fault would be difficult. The computer did not have any issue logging in with each account. %% Discuss: Motivation was low for the test subjects to follow the instructions thoroughly, probably because they are not paid to do this. Paid QA testers would probably do a better job. The computer does not require payment to do as they are told.
 
 \subsection{Analysis of Overlap and Differences}
-\textbf{Union (A $\cup$ B)}: Issues found at all. \\
-\textbf{Intersection (A $\cap$ B)}: Issues found by both methods. \\
-\textbf{Unique to Cypress (A \textbackslash B)}: Issues only detected by automated testing. \\
-\textbf{Unique to Human Testing (B \textbackslash A)}: Issues only identified by human testers. \\
-\textbf{Union complement $(A \cup B)^c$}: Issues not found.
+Let A be a set of issues found by automated testing and B be a set of issues found by human testing. Using some set operations we can answer our research questions.
+\subsubsection{Union $(A \cup B)$ Issues identified by either method.}
 
+There are no type of issues that cannot be identified by either automated tests or human testers because automated tests {\textit{can}}{can} identify all types of issues we set out to find.
+\subsubsection{Intersection $(A \cap B)$ Issues identified by both methods.}
+
+Since at least one human correctly identified each issue. The overlap between the two methods is 100\%.
+
+\subsubsection{Unique to either (A \textbackslash B) Issues only detected by automated testing.}
+
+This is an empty set since all issues \textit{can} be identified by either methods.
+
+\subsubsection{Unique to Human Testing (B \textbackslash A) Issues only identified by human testers.}
+
+This is an empty set since all issues \textit{can} be identified by either methods.
+\subsubsection{Union complement $(A \cup B)^c$ Issues not found.}
+This is an empty set since all issues \textit{can} be identified by either method.
 
 \section{Discussion}
 \subsection{Interpretation of Findings}
