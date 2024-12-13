@@ -13,13 +13,13 @@ We have a couple of test users that you have at your disposal:
 There are 3 different versions of our website, please try each version and see what is wrong.
 
 **Version 1**:
-https://gopiss.netlify.app?v=1
+https://loginpagetesting.netlify.app/?v=1
 
 **Version 2**:
-https://gopiss.netlify.app?v=2
+https://loginpagetesting.netlify.app/?v=2
 
 **Version 3**:
-https://gopiss.netlify.app?v=3
+https://loginpagetesting.netlify.app/?v=3
 
 ### Functionality
 
